@@ -8,13 +8,11 @@ use base qw( Exporter );
 
 our @EXPORT_OK = qw( fork );
 
-our $VERSION = '1.00';
+our $VERSION = '1.01';
 
 
 use Carp;
-use IPC::Shareable;
-
-our $IPC_Shareable_size = IPC::Shareable::SHM_BUFSIZ();
+use IPC::Lite qw($buffer);
 
 
 
@@ -26,8 +24,7 @@ sub fork (&) {
     confess 'parameter is not coderef' unless ref $code eq 'CODE';
     
     
-    my $buffer = {};
-    my $handler = tie $buffer, 'IPC::Shareable', undef, { 'destroy' => 1, 'size' => $IPC_Shareable_size };
+    $buffer = {};
 
     my $pid = fork();
     
@@ -41,16 +38,12 @@ sub fork (&) {
         };
         
         my $error = $@;
-        
-        $handler->shlock();
-        
+
         $buffer = {
             'result' => $result,
             'error'  => $error,
         };
-        
-        $handler->shunlock();
-       
+
         exit( 0 );
     }
     
@@ -82,8 +75,7 @@ Sub::Fork - Running subroutines in forked process
 =head1 DESCRIPTION
 
 This module provides simple interface for running subroutines in separated forked process.
-Result returned via IPC::Shareable interface.
-You may specify the size of the shared memory segment allocated by $Sub::Fork::IPC_Shareable_size
+Result returned via IPC::Lite interface.
 
 =head1 FUNCTIONS
 
@@ -94,19 +86,9 @@ The module provides the following functions:
 
     my $result = fork { 2 + 2 };
 
-=head1 TROUBLESHOOTING
-
-=over 4
-
-=item Length of shared data exceeds shared segment size
-
-Try to increase $Sub::Fork::IPC_Shareable_size value.
-
-=back
-
 =head1 SEE ALSO
 
-L<IPC::Shareable> used for subroutines result return to parent process.
+L<IPC::Lite> used for subroutines result return to parent process.
 
 =head1 AUTHOR
 

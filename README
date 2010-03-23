@@ -1,4 +1,4 @@
-Sub-Fork version 1.00
+Sub-Fork version 1.01
 =====================
 
 Sub::Fork - Running subroutines in forked process 
@@ -16,7 +16,7 @@ DEPENDENCIES
 
 This module requires these other modules and libraries:
 
-  IPC::Shareable  v0.6
+  IPC::Lite  v0.4.35
 
 COPYRIGHT AND LICENCE
 

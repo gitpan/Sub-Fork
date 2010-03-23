@@ -6,7 +6,7 @@ WriteMakefile(
     NAME              => 'Sub::Fork',
     VERSION_FROM      => 'lib/Sub/Fork.pm', # finds $VERSION
     PREREQ_PM         => {
-        'IPC::Shareable' => 0.6,
+        'IPC::Lite' => 0.4.35,
     }, # e.g., Module::Name => 1.1
     ($] >= 5.005 ?     ## Add these new keywords supported since 5.005
       (ABSTRACT_FROM  => 'lib/Sub/Fork.pm', # retrieve abstract from module
