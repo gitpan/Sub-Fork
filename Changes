@@ -1,5 +1,8 @@
 Revision history for Perl extension Sub::Fork.
 
+1.02  Fri Mar 23 20:28:20 2010
+    - Documentation fix
+
 1.01  Fri Mar 23 19:15:20 2010
     - Using IPC::Lite instead of IPC::Shareable
 

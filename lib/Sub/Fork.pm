@@ -8,7 +8,7 @@ use base qw( Exporter );
 
 our @EXPORT_OK = qw( fork );
 
-our $VERSION = '1.01';
+our $VERSION = '1.02';
 
 
 use Carp;
@@ -63,8 +63,7 @@ Sub::Fork - Running subroutines in forked process
 =head1 SYNOPSIS
 
   use Sub::Fork qw( fork );
-  $Sub::Fork::IPC_Shareable_size = 100000000;
-
+  
   my $result = fork {
       my $a = 2 + 2 + 2 + 2;
       return $a;
